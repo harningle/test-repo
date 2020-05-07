@@ -6,6 +6,7 @@ Blue="\033[36m"
 echo -e "${Blue}开始宝塔面板${Font}"
 wget -O install.sh http://download.bt.cn/install/install-ubuntu_6.0.sh
 echo y | sudo bash install.sh
+rm install.sh
 
 echo -e "${Blue}开始安装Python 3${Font}"
 apt update
@@ -17,7 +18,6 @@ sudo apt-get install mysql-client
 sudo apt-get install -y libmysqlclient-dev
 
 echo -e "${Blue}开始安装依赖${Font}"
-cd ..
 mv test-repo wos
 cd wos
 pip3 install -r requirements.txt
