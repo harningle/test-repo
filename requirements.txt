@@ -1,0 +1,4 @@
+mysqlclient
+bs4
+tqdm
+lxml
