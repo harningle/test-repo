@@ -24,3 +24,4 @@ rm README.md
 rm requirements.txt
 
 echo -e "${Blue}完成${Font}"
+bt default
