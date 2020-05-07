@@ -4,7 +4,8 @@ Font="\033[0m"
 Blue="\033[36m"
 
 echo -e "${Blue}开始宝塔面板${Font}"
-wget -O install.sh http://download.bt.cn/install/install-ubuntu_6.0.sh && echo y | sudo bash install.sh
+wget -O install.sh http://download.bt.cn/install/install-ubuntu_6.0.sh
+echo y | sudo bash install.sh
 
 echo -e "${Blue}开始安装Python 3${Font}"
 apt update
