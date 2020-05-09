@@ -385,8 +385,14 @@ if __name__ == '__main__':
 
     # Download article info.
     s = login()
+    cnt = 0
     for journal in tqdm(issn_list, desc='Retrieving articles', mininterval=300):
-    	if issn_list.index(journal) >= -1:
+        if issn_list.index(journal) >= -1:
             if journal[0] == '':
                 journal[0] = journal[1]
             retrieve_article(journal[0], journal[3])
+            cnt += 1
+        if cnt == 50:
+            cnt = 0
+            s.close()
+            s = login()
