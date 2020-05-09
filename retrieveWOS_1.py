@@ -86,8 +86,8 @@ def login():
                         verify=False)
 
     # Login using Fudan UIS account
-    form_data = {'j_username': '16300680009',
-                 'j_password': 'Wangxuanyi980105',
+    form_data = {'j_username': '18210680076',
+                 'j_password': 'Fudan1211',
                  '_eventId_proceed': ''}
     hdr['Referer'] = resp.url
     resp = session.post(resp.url, headers=hdr, data=form_data)
@@ -107,7 +107,7 @@ def login():
 
     # Check whether logged
     if 'Fudan' in resp.text:
-        print('Logged', end=' ')
+        print('Logged')
         return session
     else:
         return 'Failed'
@@ -379,16 +379,14 @@ if __name__ == '__main__':
     # Retrieve basic info. on articles
     cur.execute('select issn, eissn, category from journal;')
     issn_list = cur.fetchall()
-    issn_list = issn_list[0:100]
+    issn_list = issn_list[8000:8100]
     issn_list = [[i[0], i[1], i[2], j] for i in issn_list for j in range(2000, 2020)]
     print('Task assigned')
 
     # Download article info.
+    s = login()
     for journal in tqdm(issn_list, desc='Retrieving articles', mininterval=300):
-    	if issn_list.index(journal) >= 1252:
+    	if issn_list.index(journal) >= -1:
             if journal[0] == '':
                 journal[0] = journal[1]
-            # Login
-            s = login()
             retrieve_article(journal[0], journal[3])
-            s.close()
